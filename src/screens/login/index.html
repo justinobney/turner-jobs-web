@@ -1,1 +1,28 @@
 <h1>Login</h1>
+<div class="row">
+  <div class="col-xs-6">
+    <form ng-submit="login.authenticate(login.username, login.password)">
+
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text"
+               ng-model="login.username"
+               class="form-control"
+               placeholder="Username">
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password"
+               ng-model="login.password"
+               class="form-control"
+               placeholder="Password">
+      </div>
+
+      <button type="submit" class="btn btn-default">
+        Login
+      </button>
+
+    </form>
+  </div>
+</div>

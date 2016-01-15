@@ -10,8 +10,22 @@ function LoginDirective(){
   }
 }
 
-class LoginController {
-  constructor() {
+function LoginController(api, config, $state){
+
+  this.authenticate = authenticate;
+
+  function authenticate(username, password){
+    api.login({username, password})
+      .then(
+        resp => {
+          if(resp.meta.error){
+            alert(resp.meta.error);
+          } else {
+            config.apiHeader = resp.data[0].access_token;
+            $state.transitionTo('root');
+          }
+        }
+      );
   }
 }
 

@@ -26,15 +26,15 @@ function AppController() {
 }
 
 function ConfigService() {
-  this.apiHeader = 'a185141c18dcbcd78c3d6f3d75f8e818';
+  this.apiHeader = '';
 }
 
 function AppConfig($stateProvider, $urlRouterProvider, $httpProvider) {
-  $urlRouterProvider.otherwise("/home");
+  $urlRouterProvider.otherwise("/");
 
   $stateProvider
     .state('root', {
-      url: '/home',
+      url: '/',
       template: '<home></home>'
     })
     .state('login', {
