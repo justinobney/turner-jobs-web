@@ -1,9 +1,10 @@
 import styles from './index.css';
+import template from './index.html';
 
 function HomeDirective(){
   return {
     restrict: 'E',
-    templateUrl: 'screens/home/index.html',
+    template: template,
     controller: HomeController,
     controllerAs: 'home'
   }

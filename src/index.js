@@ -10,11 +10,12 @@ import home from './screens/home/index.js';
 import api from './services/api.js';
 // style
 import styles from 'index.css';
+import template from './screens/app.html';
 
 function AppDirective() {
   return {
     restrict: 'E',
-    templateUrl: 'screens/app.html',
+    template: template,
     controller: AppController,
     controllerAs: 'app'
   }
@@ -72,6 +73,6 @@ const deps = [
 angular.module('turner-jobs-web', deps)
   .directive('app', AppDirective)
   .service('config', ConfigService)
-  .config();
+  .config(AppConfig);
 
 angular.bootstrap(document, ['turner-jobs-web']);
