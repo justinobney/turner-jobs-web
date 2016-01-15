@@ -9,8 +9,22 @@ function HomeDirective(){
   }
 }
 
-class HomeController {
-  constructor() {
+function HomeController(api){
+  const svc = this;
+
+  svc.openings = [];
+
+  init();
+
+  function init(){
+    api.getOpenings().then(
+      resp => {
+        svc.openings = resp.data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 }
 

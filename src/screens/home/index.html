@@ -1,1 +1,29 @@
-<h1 ng-bind="app.title"></h1>
+<div class="row">
+  <div class="col-xs-12">
+    <h1>Openings</h1>
+    <hr>
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td>Craft</td>
+          <td>Location</td>
+          <td>Description</td>
+          <td>Contact Name</td>
+          <td>Contact Number</td>
+          <td>Is Closed</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="opening in home.openings">
+          <td>{{opening.craft}}</td>
+          <td>{{opening.location}}</td>
+          <td>{{opening.description}}</td>
+          <td>{{opening.contact_name}}</td>
+          <td>{{opening.contact_number}}</td>
+          <td>{{opening.is_closed}}</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
