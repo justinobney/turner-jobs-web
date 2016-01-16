@@ -7,8 +7,10 @@ import ngResource from 'angular-resource';
 // screens
 import login from './screens/login/index.js';
 import openings from './screens/openings/index.js';
-import newOpening from './screens/openings/new-opening.js'
-import editOpening from './screens/openings/edit-opening.js'
+
+// components
+import newOpening from './components/new-opening.js'
+import editOpening from './components/edit-opening.js'
 
 // services
 import api from './services/api.js';
