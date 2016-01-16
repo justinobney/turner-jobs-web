@@ -5,7 +5,7 @@ import uiRouter from 'angular-ui-router';
 import ngResource from 'angular-resource';
 // screens
 import login from './screens/login/index.js';
-import home from './screens/home/index.js';
+import openings from './screens/openings/index.js';
 // services
 import api from './services/api.js';
 // style
@@ -26,7 +26,7 @@ function AppController() {
 }
 
 function ConfigService() {
-  this.apiHeader = '';
+  this.apiHeader = 'a8c6ce46db5297e6ef6abc7bb56c1b12';
 }
 
 function AppConfig($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -35,7 +35,7 @@ function AppConfig($stateProvider, $urlRouterProvider, $httpProvider) {
   $stateProvider
     .state('root', {
       url: '/',
-      template: '<home></home>'
+      template: '<openings></openings>'
     })
     .state('login', {
       url: '/login',
@@ -65,7 +65,7 @@ const deps = [
   uiRouter,
   ngResource,
   login,
-  home,
+  openings,
   api
 ];
 
