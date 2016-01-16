@@ -32,7 +32,7 @@ function OpeningsController($uibModal, api){
 
   function openNewOpeningView() {
     var modalInstance = $uibModal.open({
-      template: '<new-opening fn-close="close(result)"></new-opening>',
+      template: '<new-opening on-save="close(result)"></new-opening>',
       controller: ModalCtrl
     });
 

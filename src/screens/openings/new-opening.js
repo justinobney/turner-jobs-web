@@ -4,7 +4,7 @@ function NewOpeningDirective(){
   return {
     restrict: 'E',
     scope: {
-      fnClose: '&'
+      onSave: '&'
     },
     template: template,
     controller: NewOpeningController,
@@ -29,7 +29,7 @@ function NewOpeningController(api){
   newOpening.save = save;
 
   function cancel(){
-    newOpening.fnClose({result:null})
+    newOpening.onSave({result:null})
   }
 
   function save(){
@@ -45,7 +45,7 @@ function NewOpeningController(api){
     api.createOpening(opening)
       .then(
         resp => {
-          newOpening.fnClose({result:resp.data})
+          newOpening.onSave({result:resp.data})
         },
         error => {
           newOpening.error = error.data.meta.error.details;
