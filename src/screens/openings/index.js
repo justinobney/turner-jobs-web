@@ -15,7 +15,8 @@ function OpeningsController($uibModal, api){
   const openings = this;
 
   openings.list = [];
-  openings.openNewOpeningView = openNewOpeningView;
+  openings.showEditOpening = showEditOpening;
+  openings.showNewOpening = showNewOpening;
 
   init();
 
@@ -30,17 +31,34 @@ function OpeningsController($uibModal, api){
     );
   }
 
-  function openNewOpeningView() {
-    var modalInstance = $uibModal.open({
+  function showNewOpening() {
+    $uibModal.open({
       template: '<new-opening on-save="close(result)"></new-opening>',
       controller: ModalCtrl
-    });
-
-    modalInstance.result.then(getOpenings);
+    }).result
+    .then(getOpenings);
 
     ModalCtrl.$inject = ['$scope', '$uibModalInstance'];
     function ModalCtrl($scope, $uibModalInstance){
       $scope.close = (result) => $uibModalInstance.close(result);
+    }
+  }
+
+  function showEditOpening(opening) {
+    $uibModal.open({
+      template: `
+        <edit-opening
+          on-save="close(result)"
+          opening="opening"></edit-opening>
+      `,
+      controller: ModalCtrl
+    }).result
+    .then(getOpenings);
+
+    ModalCtrl.$inject = ['$scope', '$uibModalInstance'];
+    function ModalCtrl($scope, $uibModalInstance){
+      $scope.close = (result) => $uibModalInstance.close(result);
+      $scope.opening = opening;
     }
   }
 

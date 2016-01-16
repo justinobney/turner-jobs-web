@@ -3,7 +3,7 @@
     <h1>Openings</h1>
     <hr>
     <button class="btn btn-default"
-            ng-click="openings.openNewOpeningView()">
+            ng-click="openings.showNewOpening()">
       Add Opening
     </button>
     <table class="table table-hover">
@@ -15,16 +15,23 @@
           <td>Contact Name</td>
           <td>Contact Number</td>
           <td>Is Closed</td>
+          <td></td>
         </tr>
       </thead>
       <tbody>
-        <tr ng-repeat="opening in openings.list">
+        <tr ng-repeat="opening in openings.list | orderBy:'id'">
           <td>{{opening.craft}}</td>
           <td>{{opening.location}}</td>
           <td>{{opening.description}}</td>
           <td>{{opening.contact_name}}</td>
           <td>{{opening.contact_number}}</td>
           <td>{{opening.is_closed}}</td>
+          <td>
+            <button class="btn btn-default"
+                    ng-click="openings.showEditOpening(opening)">
+              <i class="fa fa-pencil"></i>
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>

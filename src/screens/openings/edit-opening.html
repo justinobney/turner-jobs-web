@@ -1,0 +1,83 @@
+<nav class="navbar navbar-default navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand">
+        Edit Opening
+      </span>
+    </div>
+  </div>
+</nav>
+
+<div class="row">
+  <div class="col-xs-12">
+    <form ng-submit="editOpening.save()">
+      <div class="form-group">
+        <label>Craft</label>
+        <select class="form-control"
+                ng-options="craft for craft in editOpening.craftCodes"
+                ng-model="editOpening.craft"></select>
+        <span class="text-danger" ng-if="editOpening.error.craft">
+          {{editOpening.error.craft}}
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text"
+               class="form-control"
+               placeholder="123 Street"
+               ng-model="editOpening.location">
+        <span class="text-danger" ng-if="editOpening.error.location">
+         {{editOpening.error.location}}
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea class="form-control"
+                  ng-model="editOpening.description"></textarea>
+        <span class="text-danger" ng-if="editOpening.error.description">
+         {{editOpening.error.description}}
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Contact Name</label>
+        <input type="text"
+               class="form-control"
+               placeholder="John Smith"
+               ng-model="editOpening.contact_name">
+        <span class="text-danger" ng-if="editOpening.error.contact_name">
+          {{editOpening.error.contact_name}}
+        </span>
+      </div>
+      <div class="form-group">
+        <label>Contact Number</label>
+        <input type="text"
+               class="form-control"
+               placeholder="123-456-7890"
+               ng-model="editOpening.contact_number">
+        <span class="text-danger" ng-if="editOpening.error.contact_number">
+         {{editOpening.error.contact_number}}
+        </span>
+      </div>
+      <div class="form-group">
+        <label>
+          <input type="checkbox"
+                 ng-model="editOpening.is_closed"> Closed
+        </label>
+        <span class="text-danger" ng-if="editOpening.error.is_closed">
+         {{editOpening.error.is_closed}}
+        </span>
+      </div>
+
+      <button type="submit"
+              class="btn btn-default">
+        Update
+      </button>
+      <button type="button"
+              class="btn btn-link"
+              ng-click="editOpening.cancel()">
+        Cancel
+      </button>
+
+    </form>
+  </div>
+</div>
