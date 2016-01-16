@@ -22,14 +22,13 @@ function AppDirective() {
   }
 }
 
-function AppController() {
-  this.title = 'Angular Webpack Minimal Starter';
-}
+function AppController() {}
 
 function ConfigService() {
   this.apiHeader = 'a8c6ce46db5297e6ef6abc7bb56c1b12';
 }
 
+AppConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$httpProvider'];
 function AppConfig($stateProvider, $urlRouterProvider, $httpProvider) {
   $urlRouterProvider.otherwise("/");
 
@@ -43,24 +42,26 @@ function AppConfig($stateProvider, $urlRouterProvider, $httpProvider) {
       template: '<login></login>'
     });
 
-  // alternatively, register the interceptor via an anonymous factory
-  $httpProvider.interceptors.push(($q, config, $injector) => {
-    return {
-      request(requestConfig) {
-          if (config.apiHeader) {
-            requestConfig.headers['access_token'] = config.apiHeader;
-          }
-          return requestConfig;
-        },
-        responseError(rejectReason) {
-          if(rejectReason.status === 401){
-            const $state = $injector.get('$state');
-            $state.transitionTo('login');
-          }
-          return $q.reject(rejectReason);
+  $httpProvider.interceptors.push(AuthInterceptor);
+}
+
+AuthInterceptor.$inject = ['$q', 'config', '$injector'];
+function AuthInterceptor($q, config, $injector) {
+  return {
+    request(requestConfig) {
+        if (config.apiHeader) {
+          requestConfig.headers['access_token'] = config.apiHeader;
         }
-    };
-  });
+        return requestConfig;
+      },
+      responseError(rejectReason) {
+        if(rejectReason.status === 401){
+          const $state = $injector.get('$state');
+          $state.transitionTo('login');
+        }
+        return $q.reject(rejectReason);
+      }
+  };
 }
 
 const deps = [

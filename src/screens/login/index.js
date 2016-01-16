@@ -10,6 +10,7 @@ function LoginDirective(){
   }
 }
 
+LoginController.$inject = ['api', 'config', '$state'];
 function LoginController(api, config, $state){
 
   this.authenticate = authenticate;

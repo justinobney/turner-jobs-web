@@ -13,6 +13,7 @@ function NewOpeningDirective(){
   }
 }
 
+NewOpeningController.$inject = ['api'];
 function NewOpeningController(api){
   const newOpening = this;
 

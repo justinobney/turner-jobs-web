@@ -1,3 +1,4 @@
+ApiService.$inject = ['$resource'];
 function ApiService($resource){
   const BASE_URL = 'http://localhost:3000/v1';
   const Openings = $resource(`${BASE_URL}/openings`, {id:'@id'});
@@ -24,6 +25,7 @@ function ApiService($resource){
     return AccessTokens.save(params).$promise;
   }
 }
+
 
 export default angular
   .module('turner-jobs-web.services.api', [])

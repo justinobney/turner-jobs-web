@@ -10,6 +10,7 @@ function OpeningsDirective(){
   }
 }
 
+OpeningsController.$inject = ['$uibModal', 'api']
 function OpeningsController($uibModal, api){
   const openings = this;
 
@@ -32,12 +33,15 @@ function OpeningsController($uibModal, api){
   function openNewOpeningView() {
     var modalInstance = $uibModal.open({
       template: '<new-opening fn-close="close(result)"></new-opening>',
-      controller: ($scope, $uibModalInstance) => {
-        $scope.close = (result) => $uibModalInstance.close(result);
-      }
+      controller: ModalCtrl
     });
 
     modalInstance.result.then(getOpenings);
+
+    ModalCtrl.$inject = ['$scope', '$uibModalInstance'];
+    function ModalCtrl($scope, $uibModalInstance){
+      $scope.close = (result) => $uibModalInstance.close(result);
+    }
   }
 
 }
