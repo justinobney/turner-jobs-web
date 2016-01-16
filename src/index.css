@@ -4,24 +4,12 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
-.modal-content {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    width: 500px;
-    margin: 0;
-    border-radius: 0;
-    padding: 60px 10px 10px 10px;
-    overflow-y: scroll;
-}
-
 .modal-dialog {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    width: 500px;
+    width: 600px;
     margin: 0;
 }
 
@@ -40,4 +28,16 @@ body {
     -ms-transform: translate(0,0);
     -o-transform: translate(0,0);
     transform: translate(0,0);
+}
+
+.modal-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 600px;
+    margin: 0;
+    border-radius: 0;
+    padding: 60px 10px 10px 10px;
+    overflow-y: scroll;
 }
