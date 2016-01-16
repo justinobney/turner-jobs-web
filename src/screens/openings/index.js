@@ -14,32 +14,30 @@ function OpeningsController($uibModal, api){
   const openings = this;
 
   openings.list = [];
-  openings.open = open;
+  openings.openNewOpeningView = openNewOpeningView;
 
   init();
 
   function init(){
+    getOpenings()
+  }
+
+  function getOpenings(){
     api.getOpenings().then(
       resp => openings.list = resp.data,
       error => console.log(error)
     );
   }
 
-  function open() {
+  function openNewOpeningView() {
     var modalInstance = $uibModal.open({
-      template: 'Foo',
-      controller: ($uibModalInstance) => {
-        this.close = () => $uibModalInstance.close();
+      template: '<new-opening fn-close="close(result)"></new-opening>',
+      controller: ($scope, $uibModalInstance) => {
+        $scope.close = (result) => $uibModalInstance.close(result);
       }
     });
 
-    modalInstance.result.then(
-      (selectedItem) => {
-        $scope.selected = selectedItem;
-      }, error => {
-        $log.info('Modal dismissed at: ' + new Date());
-      }
-    );
+    modalInstance.result.then(getOpenings);
   }
 
 }

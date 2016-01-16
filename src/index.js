@@ -6,6 +6,7 @@ import ngResource from 'angular-resource';
 // screens
 import login from './screens/login/index.js';
 import openings from './screens/openings/index.js';
+import newOpening from './screens/openings/new-opening.js'
 // services
 import api from './services/api.js';
 // style
@@ -52,8 +53,10 @@ function AppConfig($stateProvider, $urlRouterProvider, $httpProvider) {
           return requestConfig;
         },
         responseError(rejectReason) {
-          const $state = $injector.get('$state');
-          $state.transitionTo('login');
+          if(rejectReason.status === 401){
+            const $state = $injector.get('$state');
+            $state.transitionTo('login');
+          }
           return $q.reject(rejectReason);
         }
     };
@@ -66,6 +69,7 @@ const deps = [
   ngResource,
   login,
   openings,
+  newOpening,
   api
 ];
 
