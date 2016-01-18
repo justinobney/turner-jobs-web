@@ -1,14 +1,16 @@
 ApiService.$inject = ['$resource'];
 function ApiService($resource){
-  const BASE_URL = 'http://localhost:3000/v1';
+  const BASE_URL = 'http://localhost:3000';
   const UPDATE = {'update': { method:'PUT' }};
-  const Openings = $resource(`${BASE_URL}/openings/:id`, {id:'@id'}, UPDATE);
-  const AccessTokens = $resource(`${BASE_URL}/access_tokens`);
+  const Openings = $resource(`${BASE_URL}/v1/openings/:id`, {id:'@id'}, UPDATE);
+  const AccessTokens = $resource(`${BASE_URL}/v1/access_tokens`);
+  const Auth = $resource(`${BASE_URL}/auth`);
 
-  this.getOpenings = getOpenings
+  this.getOpenings = getOpenings;
   this.createOpening = createOpening;
   this.updateOpening = updateOpening;
 
+  this.auth = auth;
   this.login = login;
 
   function getOpenings(){
@@ -22,6 +24,10 @@ function ApiService($resource){
   function updateOpening(id, props){
     const params = {id, ...props}
     return Openings.update(params).$promise;
+  }
+
+  function auth(){
+    return Auth.get().$promise;
   }
 
   function login({username, password}){

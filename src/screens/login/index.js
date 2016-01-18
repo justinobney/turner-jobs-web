@@ -23,6 +23,7 @@ function LoginController(api, config, $state){
             alert(resp.meta.error);
           } else {
             config.apiHeader = resp.data[0].access_token;
+            localStorage.setItem('apiHeader', config.apiHeader);
             $state.transitionTo('root');
           }
         }

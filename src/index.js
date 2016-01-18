@@ -46,6 +46,12 @@ function AppConfig($stateProvider, $urlRouterProvider, $httpProvider) {
   $httpProvider.interceptors.push(authInterceptor);
 }
 
+AppBootstrap.$inject = ['config', 'api'];
+function AppBootstrap (config, api) {
+  config.apiHeader = localStorage.getItem('apiHeader');
+  api.auth();
+}
+
 const deps = [
   uibs,
   uiRouter,
@@ -60,7 +66,8 @@ const deps = [
 
 angular.module('turner-jobs-web', deps)
   .directive('app', AppDirective)
-  .value('config', {apiHeader: 'a8c6ce46db5297e6ef6abc7bb56c1b12'})
-  .config(AppConfig);
+  .value('config', {apiHeader: ''})
+  .config(AppConfig)
+  .run(AppBootstrap, AppBootstrap);
 
 angular.bootstrap(document, ['turner-jobs-web']);
