@@ -26,11 +26,17 @@
           <td>{{opening.contact_name}}</td>
           <td>{{opening.contact_number}}</td>
           <td>{{opening.is_closed}}</td>
-          <td>
-            <button class="btn btn-default"
-                    ng-click="openings.showEditOpening(opening)">
-              <i class="fa fa-pencil"></i>
-            </button>
+          <td width="100px">
+            <div class="btn-group" role="group">
+              <button class="btn btn-default"
+                ng-click="openings.showEditOpening(opening)">
+                <i class="fa fa-pencil"></i>
+              </button>
+              <button class="btn btn-danger"
+                ng-click="openings.deleteOpening(opening)">
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
           </td>
         </tr>
       </tbody>

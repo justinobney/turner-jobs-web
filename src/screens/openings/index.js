@@ -17,6 +17,7 @@ function OpeningsController($uibModal, api){
   openings.list = [];
   openings.showEditOpening = showEditOpening;
   openings.showNewOpening = showNewOpening;
+  openings.deleteOpening = deleteOpening;
 
   init();
 
@@ -29,6 +30,13 @@ function OpeningsController($uibModal, api){
       resp => openings.list = resp.data,
       error => console.log(error)
     );
+  }
+
+  function deleteOpening(opening){
+    if(confirm('You sure?')){
+      api.deleteOpening(opening.id)
+        .then(getOpenings);
+    }
   }
 
   function showNewOpening() {
